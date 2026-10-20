@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj": {}
+    "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj": {
+    "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
+        "projectUniqueName": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
         "projectName": "AccesoDatos",
-        "projectPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
-        "packagesPath": "C:\\Users\\Marti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\obj\\",
+        "projectPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
+        "packagesPath": "C:\\Users\\jerob\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jerob\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -353,17 +353,17 @@
         }
       }
     },
-    "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj": {
+    "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj",
+        "projectUniqueName": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj",
         "projectName": "AppConsola",
-        "projectPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj",
-        "packagesPath": "C:\\Users\\Marti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\obj\\",
+        "projectPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\AppConsola.csproj",
+        "packagesPath": "C:\\Users\\jerob\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jerob\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -378,8 +378,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj": {
-                "projectPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj"
+              "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj": {
+                "projectPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj"
               }
             }
           }

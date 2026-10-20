@@ -6,6 +6,7 @@ IGenericRepository<Alumno> alumnoRepository = new GenericRepository<Alumno>();
 IGenericRepository<Curso> cursoRepository = new GenericRepository<Curso>();
 IGenericRepository<Inscripcion> inscripcionRepository = new GenericRepository<Inscripcion>();
 
+
 bool continuar = true;
 
 while (continuar)
@@ -22,7 +23,11 @@ while (continuar)
     Console.WriteLine("6. Modificar Curso (Modificación)");
     Console.WriteLine("7. Eliminar Curso (Baja)");
     Console.WriteLine("8. Ver todos los cursos");
-    Console.WriteLine("9. Salir");
+    Console.WriteLine("9. Alumnos inscriptos en un curso");
+    Console.WriteLine("10. Cursos de un alumno");
+    Console.WriteLine("11. Cantidad de alumnos por curso");
+    Console.WriteLine("12. Cursos con cupos disponibles");
+    Console.WriteLine("13. Salir");
     Console.WriteLine();
 
     Console.Write("Seleccione una opción: ");
@@ -58,8 +63,19 @@ while (continuar)
         case "8":
             VisualizarCursos();
             break;
-
         case "9":
+            AlumnosInscriptosEnCurso();
+            break;
+        case "10":
+            CursosDeUnAlumno();
+            break;
+        case "11":
+            CantidadAlumnosPorCurso();
+            break;
+        case "12":
+            CursosConCuposDisponibles();
+            break;
+        case "13":
             Console.WriteLine("¡Cerrando el sistema de usuarios!");
             continuar = false;
             break;
@@ -331,6 +347,264 @@ void MostrarListaCursos(IGenericRepository<Curso> repository)
     }
     Console.WriteLine("---------------------------------------");
     Console.WriteLine();
+}
+
+void AlumnosInscriptosEnCurso()
+{
+
+    Console.Clear();
+    Console.WriteLine("==========================================");
+    Console.WriteLine("      ALUMNOS INSCRIPTOS EN UN CURSO");
+    Console.WriteLine("==========================================");
+    Console.WriteLine();
+
+    var cursosActivos = cursoRepository
+        .ObtenerTodos()
+        .Where(c => c.Activo)
+        .ToList();
+
+    if (cursosActivos.Count == 0)
+    {
+        Console.WriteLine("No existen cursos activos.");
+        PresioneParaContinuar();
+        return;
+    }
+
+    Console.WriteLine("Cursos activos:");
+    Console.WriteLine();
+
+    foreach (var curso in cursosActivos)
+    {
+        Console.WriteLine(
+            $"ID: {curso.Id} - {curso.Nombre} - Cupo máximo: {curso.CupoMaximo}");
+    }
+
+    Console.WriteLine();
+    Console.Write("Ingrese el ID del curso: ");
+
+    if (!int.TryParse(Console.ReadLine(), out int cursoId))
+    {
+        Console.WriteLine();
+        Console.WriteLine("El ID ingresado no es válido.");
+        PresioneParaContinuar();
+        return;
+    }
+
+    var cursoSeleccionado = cursosActivos
+        .FirstOrDefault(c => c.Id == cursoId);
+
+    if (cursoSeleccionado == null)
+    {
+        Console.WriteLine();
+        Console.WriteLine("El curso no existe o no se encuentra activo.");
+        PresioneParaContinuar();
+        return;
+    }
+
+    var inscripcionRepository = new InscripcionRepository();
+    var inscripciones = inscripcionRepository
+        .ObtenerAlumnosActivosPorCurso(cursoSeleccionado.Id);
+
+    Console.WriteLine();
+    Console.WriteLine($"Curso seleccionado: {cursoSeleccionado.Nombre}");
+    Console.WriteLine();
+
+    if (inscripciones.Count == 0)
+    {
+        Console.WriteLine("El curso no tiene alumnos inscriptos.");
+        PresioneParaContinuar();
+        return;
+    }
+
+    Console.WriteLine("Alumnos inscriptos:");
+    Console.WriteLine();
+
+    foreach (var inscripcion in inscripciones)
+    {
+        var alumno = inscripcion.Alumno;
+
+        Console.WriteLine($"ID: {alumno.Id}");
+        Console.WriteLine($"Nombre: {alumno.Nombre} {alumno.Apellido}");
+        Console.WriteLine($"DNI: {alumno.DNI}");
+        Console.WriteLine($"Email: {alumno.Email}");
+        Console.WriteLine(
+            $"Fecha de inscripción: {inscripcion.FechaInscripcion:dd/MM/yyyy}");
+        Console.WriteLine("------------------------------------------");
+    }
+
+    PresioneParaContinuar();
+}
+
+void CursosDeUnAlumno()
+{
+    Console.Clear();
+
+    Console.WriteLine("==========================================");
+    Console.WriteLine("          CURSOS DE UN ALUMNO");
+    Console.WriteLine("==========================================");
+    Console.WriteLine();
+
+    MostrarListaAlumnos(alumnoRepository);
+
+    Console.WriteLine();
+    Console.Write("Ingrese el ID del alumno: ");
+
+    if (!int.TryParse(Console.ReadLine(), out int alumnoId))
+    {
+        Console.WriteLine();
+        Console.WriteLine("El ID ingresado no es válido.");
+        PresioneParaContinuar();
+        return;
+    }
+
+    var alumnoSeleccionado = alumnoRepository.ObtenerPorId(alumnoId);
+
+    if (alumnoSeleccionado == null)
+    {
+        Console.WriteLine();
+        Console.WriteLine("El alumno no existe.");
+        PresioneParaContinuar();
+        return;
+    }
+    var inscripcionRepository = new InscripcionRepository();
+    var inscripciones = inscripcionRepository
+        .ObtenerInscripcionesPorAlumno(alumnoId);
+
+    Console.WriteLine();
+    Console.WriteLine(
+        $"Alumno seleccionado: {alumnoSeleccionado.Nombre} " +
+        $"{alumnoSeleccionado.Apellido}");
+
+    Console.WriteLine();
+
+    if (inscripciones.Count == 0)
+    {
+        Console.WriteLine("El alumno no tiene inscripciones.");
+        PresioneParaContinuar();
+        return;
+    }
+
+    Console.WriteLine("Historial de cursos:");
+    Console.WriteLine();
+
+    foreach (var inscripcion in inscripciones)
+    {
+        Console.WriteLine($"ID del curso: {inscripcion.Curso.Id}");
+        Console.WriteLine($"Curso: {inscripcion.Curso.Nombre}");
+        Console.WriteLine(
+            $"Duración: {inscripcion.Curso.Duracion} horas");
+        Console.WriteLine(
+            $"Fecha de inscripción: " +
+            $"{inscripcion.FechaInscripcion:dd/MM/yyyy}");
+        Console.WriteLine($"Estado: {inscripcion.Estado}");
+        Console.WriteLine("------------------------------------------");
+    }
+
+    PresioneParaContinuar();
+}
+
+void CantidadAlumnosPorCurso()
+{
+    Console.Clear();
+
+    Console.WriteLine("==============================================================");
+    Console.WriteLine("              CANTIDAD DE ALUMNOS POR CURSO");
+    Console.WriteLine("==============================================================");
+    Console.WriteLine();
+
+    var cursos = cursoRepository
+        .ObtenerTodos()
+        .OrderBy(c => c.Id)
+        .ToList();
+
+    if (cursos.Count == 0)
+    {
+        Console.WriteLine("[No hay cursos cargados]");
+        PresioneParaContinuar();
+        return;
+    }
+    var inscripcionRepository = new InscripcionRepository();
+    var cantidadesPorCurso =
+        inscripcionRepository
+            .ObtenerCantidadAlumnosActivosPorCurso();
+
+    foreach (var curso in cursos)
+    {
+        int cantidadAlumnos = 0;
+
+        cantidadesPorCurso.TryGetValue(
+            curso.Id,
+            out cantidadAlumnos);
+
+        string estadoCurso = curso.Activo
+            ? "Activo"
+            : "Baja";
+
+        Console.WriteLine($"ID: {curso.Id} | " +$"Nombre: {curso.Nombre} | " + $"Cupo máximo: {curso.CupoMaximo} | " +$"Inscriptos: {cantidadAlumnos} | " + $"Estado: {estadoCurso}");
+    }
+
+    Console.WriteLine();
+    PresioneParaContinuar();
+}
+
+void CursosConCuposDisponibles()
+{
+    Console.Clear();
+
+    Console.WriteLine("====================================================================");
+    Console.WriteLine("                 CURSOS CON CUPOS DISPONIBLES");
+    Console.WriteLine("====================================================================");
+    Console.WriteLine();
+
+    var cursosActivos = cursoRepository
+        .ObtenerTodos()
+        .Where(c => c.Activo)
+        .OrderBy(c => c.Id)
+        .ToList();
+
+    var inscripcionRepository = new InscripcionRepository();
+    var cantidadesPorCurso =
+        inscripcionRepository
+            .ObtenerCantidadAlumnosActivosPorCurso();
+
+    var cursosConCupos = cursosActivos
+        .Select(curso =>
+        {
+            cantidadesPorCurso.TryGetValue(
+                curso.Id,
+                out int alumnosInscriptos);
+
+            int cuposDisponibles =
+                curso.CupoMaximo - alumnosInscriptos;
+
+            return new
+            {
+                Curso = curso,
+                AlumnosInscriptos = alumnosInscriptos,
+                CuposDisponibles = cuposDisponibles
+            };
+        })
+        .Where(resultado => resultado.CuposDisponibles > 0)
+        .ToList();
+
+    if (cursosConCupos.Count == 0)
+    {
+        Console.WriteLine(
+            "[No hay cursos con cupos disponibles]");
+
+        PresioneParaContinuar();
+        return;
+    }
+
+    foreach (var resultado in cursosConCupos)
+    {
+        var curso = resultado.Curso;
+
+        Console.WriteLine($"ID: {curso.Id} | " +$"Nombre: {curso.Nombre} | " +$"Duración: {curso.Duracion} hs | " +$"Cupo máximo: {curso.CupoMaximo} | " + $"Inscriptos: {resultado.AlumnosInscriptos} | " + $"Cupos disponibles: {resultado.CuposDisponibles}");
+    }
+
+    Console.WriteLine();
+    PresioneParaContinuar();
 }
 
 void PresioneParaContinuar()

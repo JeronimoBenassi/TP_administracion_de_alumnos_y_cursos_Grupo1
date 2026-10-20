@@ -5,7 +5,7 @@ namespace AccesoDatos.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly AplicationDbContext _context;
+        protected readonly AplicationDbContext _context;
 
         public GenericRepository()
         {
