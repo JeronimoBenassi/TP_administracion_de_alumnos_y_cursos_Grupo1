@@ -1,0 +1,58 @@
+Prompt utilizado para tener la estructura del primer reporte realizado:
+
+Estoy haciendo un TP de "Administración de alumnos y cursos" en C# con Entity Framework Core, usando una aplicación de consola. Necesito que me generes el reporte "Alumnos inscriptos en un curso", siguiendo el mismo estilo de código que ya uso.
+
+CONSIGNA DEL REPORTE:
+"Alumnos inscriptos en un curso: seleccionar un curso y mostrar todos los alumnos que se encuentran inscriptos."
+
+ESTRUCTURA DE LA SOLUCIÓN:
+- Proyecto AccesoDatos: carpetas Data (AplicationDbContext), Models (Alumno, Curso, Inscripcion) y Repositories (GenericRepository<T> e IGenericRepository<T>).
+- Proyecto AppConsola: Program.cs con menús de consola. Las opciones están escritas como funciones locales (void AltaAlumno(), void VisualizarCursos(), etc.) que usan alumnoRepository y cursoRepository.
+
+MODELOS:
+public class Alumno { Id, Nombre, Apellido, DNI (int), Telefono (int), Email, FechaNacimiento (DateTime), Activo (bool, true por defecto), ICollection<Inscripcion> Inscripciones }
+public class Curso { Id, Nombre, Descripcion, Duracion (int, horas), CupoMaximo (int), Activo (bool, true por defecto), ICollection<Inscripcion> Inscripciones }
+
+Inscripcion.cs (código real):
+﻿namespace AccesoDatos.Models
+{
+    public class Inscripcion
+    {
+        public int Id { get; set; }
+        public int AlumnoId { get; set; }
+        public Alumno Alumno { get; set; }
+        public int CursoId { get; set; }
+        public Curso Curso { get; set; }
+        public string Estado { get; set; }
+        public DateTime FechaInscripcion { get; set; }
+
+    }
+}
+
+GENERIC REPOSITORY ACTUAL:
+public class GenericRepository<T> : IGenericRepository<T> where T : class
+{
+    private readonly AplicationDbContext _context;
+    public GenericRepository() { _context = new AplicationDbContext(); }
+    public List<T> ObtenerTodos() { return _context.Set<T>().AsNoTracking().ToList(); }
+    public void Agregar(T entidad) { ... Add + SaveChanges }
+    public void Eliminar(object id) { ... Find + Remove + SaveChanges }
+    public void Modificar(T entidad) { ... Update + SaveChanges }
+    public T ObtenerPorId(int id) { return _context.Set<T>().Find(id); }
+}
+El _context es private y cada repositorio crea su propio contexto.
+
+DECISIONES YA TOMADAS:
+- Las bajas son lógicas (Activo = false), no se borra nada.
+- El listado de cursos muestra solo los cursos activos.
+- Una inscripción "activa" es la que tiene Estado = Activa (si mi Inscripcion no tiene Estado, adaptalo).
+
+LO QUE NECESITO:
+1. Una función void AlumnosInscriptosEnCurso() para Program.cs, con el mismo estilo que mis otras funciones: muestra la lista de cursos activos, pide el ID del curso con int.TryParse, valida que el curso exista y esté activo, y muestra los alumnos inscriptos (ID, nombre y apellido, DNI, email y fecha de inscripción). Maneja estos casos: ID inválido, curso inexistente, curso sin alumnos inscriptos. Termina con PresioneParaContinuar().
+2. El método nuevo que haga falta en el acceso a datos para traer las inscripciones del curso con sus alumnos, usando Include/ThenInclude. Indicame exactamente en qué archivo va y qué cambios hacen falta (por ejemplo, un AlumnoRepository o InscripcionRepository que herede de GenericRepository y pasar _context a protected), manteniendo la arquitectura en capas.
+3. Qué línea tengo que agregar al menú de reportes de Program.cs.
+
+REGLAS:
+- Código en español (nombres de mensajes y variables), comentarios cortos.
+- No cambies lo que ya funciona más de lo necesario y decime qué archivos toco.
+- Mostrame al final un ejemplo de cómo se vería la salida por consola.
