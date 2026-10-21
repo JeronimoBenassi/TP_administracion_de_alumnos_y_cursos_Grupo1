@@ -2906,19 +2906,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jerob\\.nuget\\packages\\": {}
+    "C:\\Users\\Marti\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
+      "projectUniqueName": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
       "projectName": "AccesoDatos",
-      "projectPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
-      "packagesPath": "C:\\Users\\jerob\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\obj\\",
+      "projectPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj",
+      "packagesPath": "C:\\Users\\Marti\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jerob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

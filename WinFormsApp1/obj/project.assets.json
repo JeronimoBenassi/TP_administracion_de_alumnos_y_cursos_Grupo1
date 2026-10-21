@@ -2883,19 +2883,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jerob\\.nuget\\packages\\": {}
+    "C:\\Users\\Marti\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\WinFormsApp1.csproj",
+      "projectUniqueName": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\WinFormsApp1.csproj",
       "projectName": "WinFormsApp1",
-      "projectPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\WinFormsApp1.csproj",
-      "packagesPath": "C:\\Users\\jerob\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\obj\\",
+      "projectPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\WinFormsApp1.csproj",
+      "packagesPath": "C:\\Users\\Marti\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jerob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2910,8 +2910,8 @@
           "framework": "net10.0-windows7.0",
           "targetAlias": "net10.0-windows",
           "projectReferences": {
-            "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj": {
-              "projectPath": "C:\\GitHub\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj"
+            "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj": {
+              "projectPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\AccesoDatos.csproj"
             }
           }
         }
