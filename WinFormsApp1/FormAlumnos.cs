@@ -10,14 +10,24 @@ namespace WinFormsApp1
 {
     public class FormAlumnos : Form
     {
-        private readonly GenericRepository<Alumno> alumnoRepository = new();
-        private readonly GenericRepository<Curso> cursoRepository = new();
-        private readonly InscripcionRepository inscripcionRepository = new();
+        // =====================================
+        // REPOSITORIOS (Inyección de Dependencias)
+        // =====================================
+        private readonly IGenericRepository<Alumno> alumnoRepository;
+        private readonly IGenericRepository<Curso> cursoRepository;
+        private readonly InscripcionRepository inscripcionRepository;
 
+        // =====================================
+        // PANELES DE NAVEGACIÓN
+        // =====================================
         private Panel panelAlumnos = new();
         private Panel panelCursos = new();
+        private Panel panelInscripciones = new();
         private Panel panelReportes = new();
 
+        // =====================================
+        // CONTROLES - ALUMNOS
+        // =====================================
         private readonly TextBox txtNombre = new();
         private readonly TextBox txtApellido = new();
         private readonly TextBox txtDNI = new();
@@ -27,6 +37,9 @@ namespace WinFormsApp1
         private readonly DataGridView dgvAlumnos = new();
         private int? alumnoIdSeleccionado;
 
+        // =====================================
+        // CONTROLES - CURSOS
+        // =====================================
         private readonly TextBox txtCursoNombre = new();
         private readonly TextBox txtDescripcion = new();
         private readonly TextBox txtDuracion = new();
@@ -35,22 +48,41 @@ namespace WinFormsApp1
         private readonly DataGridView dgvCursos = new();
         private int? cursoIdSeleccionado;
 
+        // =====================================
+        // CONTROLES - INSCRIPCIONES
+        // =====================================
+        private readonly ComboBox cmbInscripcionAlumno = new();
+        private readonly ComboBox cmbInscripcionCurso = new();
+
+        // =====================================
+        // CONTROLES - REPORTES
+        // =====================================
         private readonly ComboBox cmbCursoReporte = new();
         private readonly ComboBox cmbAlumnoReporte = new();
         private readonly DataGridView dgvReporte = new();
 
-        public FormAlumnos()
+        // =====================================
+        // CONSTRUCTOR
+        // =====================================
+        public FormAlumnos(
+            IGenericRepository<Alumno> alumnoRepo,
+            IGenericRepository<Curso> cursoRepo,
+            InscripcionRepository inscripcionRepo)
         {
+            alumnoRepository = alumnoRepo;
+            cursoRepository = cursoRepo;
+            inscripcionRepository = inscripcionRepo;
+
             CrearInterfaz();
             CargarAlumnos();
             CargarCursos();
+            CargarCombosInscripciones();
             CargarCombosReportes();
         }
 
         // =====================================
         // INTERFAZ Y NAVEGACIÓN
         // =====================================
-
         private void CrearInterfaz()
         {
             Text = "Sistema de administración";
@@ -59,21 +91,33 @@ namespace WinFormsApp1
             MinimumSize = new Size(900, 650);
             StartPosition = FormStartPosition.CenterScreen;
 
+            // Instanciar Paneles
             panelAlumnos = CrearPanel("ADMINISTRACIÓN DE ALUMNOS");
             panelCursos = CrearPanel("ADMINISTRACIÓN DE CURSOS");
+            panelInscripciones = CrearPanel("GESTIÓN DE INSCRIPCIONES");
             panelReportes = CrearPanel("REPORTES");
 
+            // Armar contenido de cada panel
             CrearInterfazAlumnos();
             CrearInterfazCursos();
+            CrearInterfazInscripciones(panelInscripciones);
             CrearInterfazReportes();
 
-            CrearBoton(this, "Alumnos", 20, 15, 130, 35,
+            // Botones de Menú Superior
+            CrearBoton(this, "Alumnos", 20, 15, 120, 35,
                 () => MostrarPanel(panelAlumnos));
 
-            CrearBoton(this, "Cursos", 160, 15, 130, 35,
+            CrearBoton(this, "Cursos", 150, 15, 120, 35,
                 () => MostrarPanel(panelCursos));
 
-            CrearBoton(this, "Reportes", 300, 15, 130, 35,
+            CrearBoton(this, "Inscripciones", 280, 15, 130, 35,
+                () =>
+                {
+                    CargarCombosInscripciones();
+                    MostrarPanel(panelInscripciones);
+                });
+
+            CrearBoton(this, "Reportes", 420, 15, 120, 35,
                 () =>
                 {
                     CargarCombosReportes();
@@ -113,6 +157,7 @@ namespace WinFormsApp1
         {
             panelAlumnos.Visible = false;
             panelCursos.Visible = false;
+            panelInscripciones.Visible = false;
             panelReportes.Visible = false;
 
             panel.Visible = true;
@@ -125,9 +170,7 @@ namespace WinFormsApp1
             }
         }
 
-        private void AgregarCampo(
-            Panel panel, string etiqueta,
-            TextBox caja, int x, int y)
+        private void AgregarCampo(Panel panel, string etiqueta, TextBox caja, int x, int y)
         {
             panel.Controls.Add(new Label
             {
@@ -141,9 +184,7 @@ namespace WinFormsApp1
             panel.Controls.Add(caja);
         }
 
-        private Button CrearBoton(
-            Control contenedor, string texto,
-            int x, int y, int ancho, int alto, Action accion)
+        private Button CrearBoton(Control contenedor, string texto, int x, int y, int ancho, int alto, Action accion)
         {
             Button boton = new Button
             {
@@ -165,16 +206,13 @@ namespace WinFormsApp1
             grilla.AllowUserToAddRows = false;
             grilla.AllowUserToDeleteRows = false;
             grilla.MultiSelect = false;
-            grilla.SelectionMode =
-                DataGridViewSelectionMode.FullRowSelect;
-            grilla.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
+            grilla.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grilla.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         // =====================================
         // ALUMNOS
         // =====================================
-
         private void CrearInterfazAlumnos()
         {
             AgregarCampo(panelAlumnos, "Nombre", txtNombre, 10, 60);
@@ -194,14 +232,10 @@ namespace WinFormsApp1
             dtpNacimiento.SetBounds(470, 154, 200, 27);
             panelAlumnos.Controls.Add(dtpNacimiento);
 
-            CrearBoton(panelAlumnos, "Guardar", 10, 200, 100, 35,
-                GuardarAlumno);
-            CrearBoton(panelAlumnos, "Modificar", 120, 200, 100, 35,
-                ModificarAlumno);
-            CrearBoton(panelAlumnos, "Eliminar", 230, 200, 100, 35,
-                EliminarAlumno);
-            CrearBoton(panelAlumnos, "Limpiar", 340, 200, 100, 35,
-                LimpiarAlumno);
+            CrearBoton(panelAlumnos, "Guardar", 10, 200, 100, 35, GuardarAlumno);
+            CrearBoton(panelAlumnos, "Modificar", 120, 200, 100, 35, ModificarAlumno);
+            CrearBoton(panelAlumnos, "Eliminar", 230, 200, 100, 35, EliminarAlumno);
+            CrearBoton(panelAlumnos, "Limpiar", 340, 200, 100, 35, LimpiarAlumno);
 
             ConfigurarGrilla(dgvAlumnos);
             dgvAlumnos.SetBounds(10, 250, 940, 330);
@@ -284,6 +318,7 @@ namespace WinFormsApp1
 
                 alumnoRepository.Agregar(alumno);
                 CargarAlumnos();
+                CargarCombosInscripciones();
                 CargarCombosReportes();
                 LimpiarAlumno();
 
@@ -308,8 +343,7 @@ namespace WinFormsApp1
 
             try
             {
-                Alumno alumno =
-                    alumnoRepository.ObtenerPorId(alumnoIdSeleccionado.Value);
+                Alumno alumno = alumnoRepository.ObtenerPorId(alumnoIdSeleccionado.Value);
 
                 if (alumno == null)
                 {
@@ -326,6 +360,7 @@ namespace WinFormsApp1
 
                 alumnoRepository.Modificar(alumno);
                 CargarAlumnos();
+                CargarCombosInscripciones();
                 CargarCombosReportes();
                 LimpiarAlumno();
 
@@ -345,17 +380,15 @@ namespace WinFormsApp1
                 return;
             }
 
-            if (MessageBox.Show(
-                "¿Eliminar el alumno seleccionado?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) != DialogResult.Yes)
+            if (MessageBox.Show("¿Eliminar el alumno seleccionado?", "Confirmar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
 
             try
             {
                 alumnoRepository.Eliminar(alumnoIdSeleccionado.Value);
                 CargarAlumnos();
+                CargarCombosInscripciones();
                 CargarCombosReportes();
                 LimpiarAlumno();
             }
@@ -371,24 +404,15 @@ namespace WinFormsApp1
                 return;
 
             var fila = dgvAlumnos.CurrentRow;
+            alumnoIdSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
 
-            alumnoIdSeleccionado =
-                Convert.ToInt32(fila.Cells["Id"].Value);
+            txtNombre.Text = fila.Cells["Nombre"].Value?.ToString() ?? "";
+            txtApellido.Text = fila.Cells["Apellido"].Value?.ToString() ?? "";
+            txtDNI.Text = fila.Cells["DNI"].Value?.ToString() ?? "";
+            txtTelefono.Text = fila.Cells["Telefono"].Value?.ToString() ?? "";
+            txtEmail.Text = fila.Cells["Email"].Value?.ToString() ?? "";
 
-            txtNombre.Text =
-                fila.Cells["Nombre"].Value?.ToString() ?? "";
-            txtApellido.Text =
-                fila.Cells["Apellido"].Value?.ToString() ?? "";
-            txtDNI.Text =
-                fila.Cells["DNI"].Value?.ToString() ?? "";
-            txtTelefono.Text =
-                fila.Cells["Telefono"].Value?.ToString() ?? "";
-            txtEmail.Text =
-                fila.Cells["Email"].Value?.ToString() ?? "";
-
-            if (DateTime.TryParse(
-                fila.Cells["FechaNacimiento"].Value?.ToString(),
-                out DateTime fecha))
+            if (DateTime.TryParse(fila.Cells["FechaNacimiento"].Value?.ToString(), out DateTime fecha))
                 dtpNacimiento.Value = fecha;
         }
 
@@ -407,7 +431,6 @@ namespace WinFormsApp1
         // =====================================
         // CURSOS
         // =====================================
-
         private void CrearInterfazCursos()
         {
             AgregarCampo(panelCursos, "Nombre", txtCursoNombre, 10, 60);
@@ -420,14 +443,10 @@ namespace WinFormsApp1
             chkActivo.SetBounds(240, 154, 180, 27);
             panelCursos.Controls.Add(chkActivo);
 
-            CrearBoton(panelCursos, "Guardar", 10, 200, 100, 35,
-                GuardarCurso);
-            CrearBoton(panelCursos, "Modificar", 120, 200, 100, 35,
-                ModificarCurso);
-            CrearBoton(panelCursos, "Eliminar", 230, 200, 100, 35,
-                EliminarCurso);
-            CrearBoton(panelCursos, "Limpiar", 340, 200, 100, 35,
-                LimpiarCurso);
+            CrearBoton(panelCursos, "Guardar", 10, 200, 100, 35, GuardarCurso);
+            CrearBoton(panelCursos, "Modificar", 120, 200, 100, 35, ModificarCurso);
+            CrearBoton(panelCursos, "Eliminar", 230, 200, 100, 35, EliminarCurso);
+            CrearBoton(panelCursos, "Limpiar", 340, 200, 100, 35, LimpiarCurso);
 
             ConfigurarGrilla(dgvCursos);
             dgvCursos.SetBounds(10, 250, 940, 330);
@@ -460,6 +479,7 @@ namespace WinFormsApp1
                 if (dgvCursos.Columns["Id"] != null)
                     dgvCursos.Columns["Id"].Visible = false;
 
+                CargarCombosInscripciones();
                 CargarCombosReportes();
             }
             catch (Exception ex)
@@ -480,8 +500,7 @@ namespace WinFormsApp1
                 return false;
             }
 
-            if (!int.TryParse(txtDuracion.Text, out duracion) ||
-                duracion <= 0)
+            if (!int.TryParse(txtDuracion.Text, out duracion) || duracion <= 0)
             {
                 MessageBox.Show("La duración debe ser mayor a cero.");
                 return false;
@@ -537,8 +556,7 @@ namespace WinFormsApp1
 
             try
             {
-                Curso curso =
-                    cursoRepository.ObtenerPorId(cursoIdSeleccionado.Value);
+                Curso curso = cursoRepository.ObtenerPorId(cursoIdSeleccionado.Value);
 
                 if (curso == null)
                 {
@@ -572,11 +590,8 @@ namespace WinFormsApp1
                 return;
             }
 
-            if (MessageBox.Show(
-                "¿Eliminar el curso seleccionado?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) != DialogResult.Yes)
+            if (MessageBox.Show("¿Eliminar el curso seleccionado?", "Confirmar",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
 
             try
@@ -587,9 +602,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "No se pudo eliminar el curso. Puede tener inscripciones asociadas.\n"
-                    + ex.Message);
+                MessageBox.Show("No se pudo eliminar el curso. Puede tener inscripciones asociadas.\n" + ex.Message);
             }
         }
 
@@ -599,20 +612,13 @@ namespace WinFormsApp1
                 return;
 
             var fila = dgvCursos.CurrentRow;
+            cursoIdSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
 
-            cursoIdSeleccionado =
-                Convert.ToInt32(fila.Cells["Id"].Value);
-
-            txtCursoNombre.Text =
-                fila.Cells["Nombre"].Value?.ToString() ?? "";
-            txtDescripcion.Text =
-                fila.Cells["Descripcion"].Value?.ToString() ?? "";
-            txtDuracion.Text =
-                fila.Cells["Duracion"].Value?.ToString() ?? "";
-            txtCupo.Text =
-                fila.Cells["CupoMaximo"].Value?.ToString() ?? "";
-            chkActivo.Checked =
-                Convert.ToBoolean(fila.Cells["Activo"].Value);
+            txtCursoNombre.Text = fila.Cells["Nombre"].Value?.ToString() ?? "";
+            txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString() ?? "";
+            txtDuracion.Text = fila.Cells["Duracion"].Value?.ToString() ?? "";
+            txtCupo.Text = fila.Cells["CupoMaximo"].Value?.ToString() ?? "";
+            chkActivo.Checked = Convert.ToBoolean(fila.Cells["Activo"].Value);
         }
 
         private void LimpiarCurso()
@@ -627,46 +633,101 @@ namespace WinFormsApp1
         }
 
         // =====================================
+        // INSCRIPCIONES
+        // =====================================
+        private void CrearInterfazInscripciones(Panel panel)
+        {
+            panel.Controls.Add(new Label { Text = "Seleccionar Alumno:", Left = 10, Top = 60, Width = 150 });
+            cmbInscripcionAlumno.SetBounds(10, 85, 300, 30);
+            cmbInscripcionAlumno.DropDownStyle = ComboBoxStyle.DropDownList;
+            panel.Controls.Add(cmbInscripcionAlumno);
+
+            panel.Controls.Add(new Label { Text = "Seleccionar Curso Activo:", Left = 330, Top = 60, Width = 180 });
+            cmbInscripcionCurso.SetBounds(330, 85, 300, 30);
+            cmbInscripcionCurso.DropDownStyle = ComboBoxStyle.DropDownList;
+            panel.Controls.Add(cmbInscripcionCurso);
+
+            CrearBoton(panel, "Inscribir Alumno", 650, 83, 150, 32, EjecutarInscripcion);
+        }
+
+        private void CargarCombosInscripciones()
+        {
+            if (cmbInscripcionAlumno.IsDisposed || cmbInscripcionCurso.IsDisposed)
+                return;
+
+            try
+            {
+                var alumnos = alumnoRepository.ObtenerTodos()
+                    .OrderBy(a => a.Apellido)
+                    .ThenBy(a => a.Nombre)
+                    .ToList();
+
+                var cursos = cursoRepository.ObtenerTodos()
+                    .Where(c => c.Activo)
+                    .OrderBy(c => c.Nombre)
+                    .ToList();
+
+                cmbInscripcionAlumno.DataSource = null;
+                cmbInscripcionAlumno.DisplayMember = "Apellido";
+                cmbInscripcionAlumno.ValueMember = "Id";
+                cmbInscripcionAlumno.DataSource = alumnos;
+
+                cmbInscripcionCurso.DataSource = null;
+                cmbInscripcionCurso.DisplayMember = "Nombre";
+                cmbInscripcionCurso.ValueMember = "Id";
+                cmbInscripcionCurso.DataSource = cursos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar combos de inscripción:\n" + ex.Message);
+            }
+        }
+
+        private void EjecutarInscripcion()
+        {
+            if (cmbInscripcionAlumno.SelectedValue == null || cmbInscripcionCurso.SelectedValue == null)
+            {
+                MessageBox.Show("Seleccioná un alumno y un curso válidos.");
+                return;
+            }
+
+            try
+            {
+                int alumnoId = Convert.ToInt32(cmbInscripcionAlumno.SelectedValue);
+                int cursoId = Convert.ToInt32(cmbInscripcionCurso.SelectedValue);
+
+                inscripcionRepository.InscribirAlumno(alumnoId, cursoId);
+
+                MessageBox.Show("¡Inscripción realizada con éxito!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al realizar la inscripción:\n" + ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // =====================================
         // REPORTES
         // =====================================
-
         private void CrearInterfazReportes()
         {
-            panelReportes.Controls.Add(new Label
-            {
-                Text = "Curso:",
-                Left = 10,
-                Top = 60,
-                Width = 100
-            });
+            panelReportes.Controls.Add(new Label { Text = "Curso:", Left = 10, Top = 60, Width = 100 });
 
             cmbCursoReporte.SetBounds(10, 85, 240, 30);
             cmbCursoReporte.DropDownStyle = ComboBoxStyle.DropDownList;
             panelReportes.Controls.Add(cmbCursoReporte);
 
-            CrearBoton(panelReportes, "Ver inscriptos", 265, 85, 130, 30,
-                ReporteAlumnosInscriptos);
+            CrearBoton(panelReportes, "Ver inscriptos", 265, 85, 130, 30, ReporteAlumnosInscriptos);
+            CrearBoton(panelReportes, "Cantidad por curso", 405, 85, 150, 30, ReporteCantidadPorCurso);
+            CrearBoton(panelReportes, "Cupos disponibles", 565, 85, 150, 30, ReporteCuposDisponibles);
 
-            CrearBoton(panelReportes, "Cantidad por curso", 405, 85, 150, 30,
-                ReporteCantidadPorCurso);
-
-            CrearBoton(panelReportes, "Cupos disponibles", 565, 85, 150, 30,
-                ReporteCuposDisponibles);
-
-            panelReportes.Controls.Add(new Label
-            {
-                Text = "Alumno:",
-                Left = 10,
-                Top = 130,
-                Width = 100
-            });
+            panelReportes.Controls.Add(new Label { Text = "Alumno:", Left = 10, Top = 130, Width = 100 });
 
             cmbAlumnoReporte.SetBounds(10, 155, 240, 30);
             cmbAlumnoReporte.DropDownStyle = ComboBoxStyle.DropDownList;
             panelReportes.Controls.Add(cmbAlumnoReporte);
 
-            CrearBoton(panelReportes, "Ver cursos del alumno",
-                265, 155, 190, 30, ReporteCursosDeAlumno);
+            CrearBoton(panelReportes, "Ver cursos del alumno", 265, 155, 190, 30, ReporteCursosDeAlumno);
 
             ConfigurarGrilla(dgvReporte);
             dgvReporte.SetBounds(10, 205, 940, 375);
@@ -680,11 +741,8 @@ namespace WinFormsApp1
 
             try
             {
-                int? cursoAnterior = cmbCursoReporte.SelectedValue is int ci
-                    ? ci : null;
-
-                int? alumnoAnterior = cmbAlumnoReporte.SelectedValue is int ai
-                    ? ai : null;
+                int? cursoAnterior = cmbCursoReporte.SelectedValue is int ci ? ci : null;
+                int? alumnoAnterior = cmbAlumnoReporte.SelectedValue is int ai ? ai : null;
 
                 var cursos = cursoRepository.ObtenerTodos()
                     .Where(c => c.Activo)
@@ -706,18 +764,15 @@ namespace WinFormsApp1
                 cmbAlumnoReporte.ValueMember = "Id";
                 cmbAlumnoReporte.DataSource = alumnos;
 
-                if (cursoAnterior.HasValue &&
-                    cursos.Any(c => c.Id == cursoAnterior.Value))
+                if (cursoAnterior.HasValue && cursos.Any(c => c.Id == cursoAnterior.Value))
                     cmbCursoReporte.SelectedValue = cursoAnterior.Value;
 
-                if (alumnoAnterior.HasValue &&
-                    alumnos.Any(a => a.Id == alumnoAnterior.Value))
+                if (alumnoAnterior.HasValue && alumnos.Any(a => a.Id == alumnoAnterior.Value))
                     cmbAlumnoReporte.SelectedValue = alumnoAnterior.Value;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar opciones de reportes:\n"
-                    + ex.Message);
+                MessageBox.Show("Error al cargar opciones de reportes:\n" + ex.Message);
             }
         }
 
@@ -732,9 +787,7 @@ namespace WinFormsApp1
             try
             {
                 int cursoId = Convert.ToInt32(cmbCursoReporte.SelectedValue);
-
-                var inscripciones =
-                    inscripcionRepository.ObtenerAlumnosActivosPorCurso(cursoId);
+                var inscripciones = inscripcionRepository.ObtenerAlumnosActivosPorCurso(cursoId);
 
                 dgvReporte.DataSource = null;
                 dgvReporte.DataSource = inscripciones.Select(i => new
@@ -744,8 +797,7 @@ namespace WinFormsApp1
                     i.Alumno.Apellido,
                     i.Alumno.DNI,
                     i.Alumno.Email,
-                    FechaInscripcion =
-                        i.FechaInscripcion.ToString("dd/MM/yyyy")
+                    FechaInscripcion = i.FechaInscripcion.ToString("dd/MM/yyyy")
                 }).ToList();
 
                 if (dgvReporte.Columns["Id"] != null)
@@ -771,17 +823,14 @@ namespace WinFormsApp1
             try
             {
                 int alumnoId = Convert.ToInt32(cmbAlumnoReporte.SelectedValue);
-
-                var inscripciones =
-                    inscripcionRepository.ObtenerInscripcionesPorAlumno(alumnoId);
+                var inscripciones = inscripcionRepository.ObtenerInscripcionesPorAlumno(alumnoId);
 
                 dgvReporte.DataSource = null;
                 dgvReporte.DataSource = inscripciones.Select(i => new
                 {
                     Curso = i.Curso.Nombre,
                     DuracionHoras = i.Curso.Duracion,
-                    FechaInscripcion =
-                        i.FechaInscripcion.ToString("dd/MM/yyyy"),
+                    FechaInscripcion = i.FechaInscripcion.ToString("dd/MM/yyyy"),
                     i.Estado
                 }).ToList();
 
@@ -798,18 +847,13 @@ namespace WinFormsApp1
         {
             try
             {
-                var cursos = cursoRepository.ObtenerTodos()
-                    .OrderBy(c => c.Id)
-                    .ToList();
-
-                var cantidades =
-                    inscripcionRepository.ObtenerCantidadAlumnosActivosPorCurso();
+                var cursos = cursoRepository.ObtenerTodos().OrderBy(c => c.Id).ToList();
+                var cantidades = inscripcionRepository.ObtenerCantidadAlumnosActivosPorCurso();
 
                 dgvReporte.DataSource = null;
                 dgvReporte.DataSource = cursos.Select(c =>
                 {
                     cantidades.TryGetValue(c.Id, out int cantidad);
-
                     return new
                     {
                         c.Id,
@@ -833,19 +877,13 @@ namespace WinFormsApp1
         {
             try
             {
-                var cursos = cursoRepository.ObtenerTodos()
-                    .Where(c => c.Activo)
-                    .OrderBy(c => c.Nombre)
-                    .ToList();
-
-                var cantidades =
-                    inscripcionRepository.ObtenerCantidadAlumnosActivosPorCurso();
+                var cursos = cursoRepository.ObtenerTodos().Where(c => c.Activo).OrderBy(c => c.Nombre).ToList();
+                var cantidades = inscripcionRepository.ObtenerCantidadAlumnosActivosPorCurso();
 
                 dgvReporte.DataSource = null;
                 dgvReporte.DataSource = cursos.Select(c =>
                 {
                     cantidades.TryGetValue(c.Id, out int cantidad);
-
                     return new
                     {
                         c.Id,

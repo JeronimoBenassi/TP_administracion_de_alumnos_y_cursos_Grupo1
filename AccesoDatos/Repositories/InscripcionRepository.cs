@@ -8,12 +8,10 @@ public class InscripcionRepository : GenericRepository<Inscripcion>
 {
     public List<Inscripcion> ObtenerAlumnosActivosPorCurso(int cursoId)
     {
-        return _context.Set<Inscripcion>()
-            .AsNoTracking()
-            .Include(i => i.Alumno)
-            .Where(i =>
-                i.CursoId == cursoId &&
-                i.Estado == "Activa")
+        return _context.Inscripcion
+            .Include(i => i.Alumno)  
+            .Include(i => i.Curso)
+            .Where(i => i.CursoId == cursoId && i.Estado == "Activo")
             .ToList();
     }
     public List<Inscripcion> ObtenerInscripcionesPorAlumno(int alumnoId)
@@ -38,5 +36,39 @@ public class InscripcionRepository : GenericRepository<Inscripcion>
             .ToDictionary(
                 resultado => resultado.CursoId,
                 resultado => resultado.Cantidad);
+    }
+
+    public void InscribirAlumno(int alumnoId, int cursoId)
+    {
+        // 1. Validar si ya existe una inscripción activa para evitar duplicados
+        var yaInscripto = _context.Inscripcion
+            .Any(i => i.AlumnoId == alumnoId && i.CursoId == cursoId && i.Estado == "Activo");
+
+        if (yaInscripto)
+        {
+            throw new Exception("El alumno ya se encuentra inscripto en este curso.");
+        }
+
+        // 2. Opcional: Validar cupos disponibles antes de inscribir
+        var curso = _context.Curso.Find(cursoId);
+        var inscriptosActuales = _context.Inscripcion
+            .Count(i => i.CursoId == cursoId && i.Estado == "Activo");
+
+        if (inscriptosActuales >= curso.CupoMaximo)
+        {
+            throw new Exception("El curso ya no cuenta con cupos disponibles.");
+        }
+
+        // 3. Crear y guardar la inscripción
+        var nuevaInscripcion = new Inscripcion
+        {
+            AlumnoId = alumnoId,
+            CursoId = cursoId,
+            FechaInscripcion = DateTime.Now,
+            Estado = "Activo"
+        };
+
+        _context.Inscripcion.Add(nuevaInscripcion);
+        _context.SaveChanges();
     }
 }

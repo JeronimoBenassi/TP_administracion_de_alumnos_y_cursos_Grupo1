@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\winformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\accesodatos\\repositories\\inscripcionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|solutionrelative:accesodatos\\repositories\\inscripcionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\winformsapp1\\formalumnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\formalumnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\accesodatos\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|solutionrelative:accesodatos\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\winformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\accesodatos\\repositories\\inscripcionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|solutionrelative:accesodatos\\repositories\\inscripcionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\winformsapp1\\formalumnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\formalumnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\accesodatos\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8B56AF-C884-1B79-740F-D48CDB7C9D05}|AccesoDatos\\AccesoDatos.csproj|solutionrelative:accesodatos\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0B43DBFF-E285-2334-8A77-09A4879ADD36}|AppConsola\\AppConsola.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\appconsola\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,13 +42,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "FormAlumnos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\FormAlumnos.cs",
+              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "WinFormsApp1\\FormAlumnos.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T19:54:31.16Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\Program.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\Program.cs",
-              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\Program.cs*",
-              "RelativeToolTip": "WinFormsApp1\\Program.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\Program.cs",
+              "RelativeToolTip": "WinFormsApp1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-21T23:01:53.22Z",
               "EditorCaption": ""
@@ -55,29 +71,29 @@
               "Title": "FormAlumnos.cs",
               "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs",
               "RelativeDocumentMoniker": "WinFormsApp1\\FormAlumnos.cs",
-              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs*",
-              "RelativeToolTip": "WinFormsApp1\\FormAlumnos.cs*",
-              "ViewState": "AgIAADgDAAAAAAAAAAAgwFkDAAAxAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs",
+              "RelativeToolTip": "WinFormsApp1\\FormAlumnos.cs",
+              "ViewState": "AgIAAGoDAAAAAAAAAAAcwI4DAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-21T22:31:36.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "InscripcionRepository.cs",
               "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\Repositories\\InscripcionRepository.cs",
               "RelativeDocumentMoniker": "AccesoDatos\\Repositories\\InscripcionRepository.cs",
-              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\Repositories\\InscripcionRepository.cs",
-              "RelativeToolTip": "AccesoDatos\\Repositories\\InscripcionRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\Repositories\\InscripcionRepository.cs*",
+              "RelativeToolTip": "AccesoDatos\\Repositories\\InscripcionRepository.cs*",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAiwAsAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T20:01:43.262Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AppConsola\\Program.cs",
               "RelativeDocumentMoniker": "AppConsola\\Program.cs",
@@ -85,12 +101,11 @@
               "RelativeToolTip": "AppConsola\\Program.cs",
               "ViewState": "AgIAAEsBAAAAAAAAAAAAAF4BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-20T19:52:53.675Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-20T19:52:53.675Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GenericRepository.cs",
               "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\Repositories\\GenericRepository.cs",
               "RelativeDocumentMoniker": "AccesoDatos\\Repositories\\GenericRepository.cs",
@@ -98,8 +113,7 @@
               "RelativeToolTip": "AccesoDatos\\Repositories\\GenericRepository.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAowDYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-20T20:00:07.275Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-20T20:00:07.275Z"
             }
           ]
         }
