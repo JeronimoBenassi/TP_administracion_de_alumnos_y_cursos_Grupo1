@@ -30,7 +30,7 @@ namespace AccesoDatos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DNI")
+                    b.Property<long>("DNI")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
@@ -44,7 +44,7 @@ namespace AccesoDatos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Telefono")
+                    b.Property<long>("Telefono")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

@@ -275,7 +275,7 @@ namespace WinFormsApp1
             }
         }
 
-        private bool ValidarAlumno(out int dni, out int telefono)
+        private bool ValidarAlumno(out long dni, out long telefono)
         {
             dni = 0;
             telefono = 0;
@@ -288,8 +288,8 @@ namespace WinFormsApp1
                 return false;
             }
 
-            if (!int.TryParse(txtDNI.Text, out dni) ||
-                !int.TryParse(txtTelefono.Text, out telefono))
+            if (!long.TryParse(txtDNI.Text, out dni) ||
+                !long.TryParse(txtTelefono.Text, out telefono))
             {
                 MessageBox.Show("DNI y teléfono deben ser numéricos.");
                 return false;
@@ -300,7 +300,7 @@ namespace WinFormsApp1
 
         private void GuardarAlumno()
         {
-            if (!ValidarAlumno(out int dni, out int telefono))
+            if (!ValidarAlumno(out long dni, out long telefono))
                 return;
 
             try
@@ -338,7 +338,7 @@ namespace WinFormsApp1
                 return;
             }
 
-            if (!ValidarAlumno(out int dni, out int telefono))
+            if (!ValidarAlumno(out long dni, out long telefono))
                 return;
 
             try
@@ -831,6 +831,7 @@ namespace WinFormsApp1
                     Curso = i.Curso.Nombre,
                     DuracionHoras = i.Curso.Duracion,
                     FechaInscripcion = i.FechaInscripcion.ToString("dd/MM/yyyy"),
+                    EstadoCurso = i.Curso.Activo ? "Activo" : "Baja",
                     i.Estado
                 }).ToList();
 

@@ -96,10 +96,10 @@ void AltaAlumno()
     string Apellido = Console.ReadLine();
 
     Console.Write("Ingrese el DNI del alumno: ");
-    int DNI = int.Parse(Console.ReadLine());
+    long DNI = long.Parse(Console.ReadLine());
 
     Console.Write("Ingrese el telefono del alumno: ");
-    int Telefono = int.Parse(Console.ReadLine());
+    long Telefono = long.Parse(Console.ReadLine());
 
     Console.Write("Ingrese el email del alumno: ");
     string Email = Console.ReadLine();
@@ -140,10 +140,10 @@ void ModificarAlumno()
             alumnoACambiar.Apellido = Console.ReadLine();
 
             Console.Write($"Ingrese el nuevo DNI para '{alumnoACambiar.DNI}': ");
-            alumnoACambiar.DNI = int.Parse(Console.ReadLine());
+            alumnoACambiar.DNI = long.Parse(Console.ReadLine());
 
             Console.Write($"Ingrese el nuevo telefono para '{alumnoACambiar.Telefono}': ");
-            alumnoACambiar.Telefono = int.Parse(Console.ReadLine());
+            alumnoACambiar.Telefono = long.Parse(Console.ReadLine());
 
 
             Console.Write($"Ingrese el nuevo email para '{alumnoACambiar.Email}': ");
@@ -497,6 +497,7 @@ void CursosDeUnAlumno()
             $"Fecha de inscripción: " +
             $"{inscripcion.FechaInscripcion:dd/MM/yyyy}");
         Console.WriteLine($"Estado: {inscripcion.Estado}");
+        Console.WriteLine($"Estado del curso: {(inscripcion.Curso.Activo ? "Activo" : "Baja")}");
         Console.WriteLine("------------------------------------------");
     }
 

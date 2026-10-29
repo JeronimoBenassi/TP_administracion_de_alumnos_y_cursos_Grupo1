@@ -26,7 +26,7 @@ public class InscripcionRepository : GenericRepository<Inscripcion>
     {
         return _context.Set<Inscripcion>()
             .AsNoTracking()
-            .Where(i => i.Estado == "Activa")
+            .Where(i => i.Estado == "Activo")
             .GroupBy(i => i.CursoId)
             .Select(grupo => new
             {
