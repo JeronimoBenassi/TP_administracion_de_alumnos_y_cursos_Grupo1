@@ -831,8 +831,7 @@ namespace WinFormsApp1
                     Curso = i.Curso.Nombre,
                     DuracionHoras = i.Curso.Duracion,
                     FechaInscripcion = i.FechaInscripcion.ToString("dd/MM/yyyy"),
-                    EstadoCurso = i.Curso.Activo ? "Activo" : "Baja",
-                    i.Estado
+                    EstadoCurso = i.Curso.Activo ? "Activo" : "Baja"
                 }).ToList();
 
                 if (inscripciones.Count == 0)

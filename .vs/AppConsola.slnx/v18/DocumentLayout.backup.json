@@ -15,7 +15,7 @@
       "RelativeMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|c:\\users\\marti\\onedrive\\documentos\\tp-progra\\tp_administracion_de_alumnos_y_cursos_grupo1\\winformsapp1\\formalumnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\winformsapp1\\formalumnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{FC1D2412-C2EE-4F99-94AF-1AB486119117}|WinFormsApp1\\WinFormsApp1.csproj|solutionrelative:winformsapp1\\formalumnos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -34,23 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormAlumnos.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs",
-              "RelativeDocumentMoniker": "WinFormsApp1\\FormAlumnos.cs",
-              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs [Dise\u00F1o]",
-              "RelativeToolTip": "WinFormsApp1\\FormAlumnos.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-27T19:54:31.16Z",
-              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
@@ -62,8 +50,7 @@
               "RelativeToolTip": "WinFormsApp1\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-21T23:01:53.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-21T23:01:53.22Z"
             },
             {
               "$type": "Document",
@@ -114,6 +101,17 @@
               "ViewState": "AgIAAA8AAAAAAAAAAAAowDYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T20:00:07.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormAlumnos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs",
+              "RelativeDocumentMoniker": "WinFormsApp1\\FormAlumnos.cs",
+              "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\WinFormsApp1\\FormAlumnos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "WinFormsApp1\\FormAlumnos.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-27T19:54:31.16Z"
             }
           ]
         }

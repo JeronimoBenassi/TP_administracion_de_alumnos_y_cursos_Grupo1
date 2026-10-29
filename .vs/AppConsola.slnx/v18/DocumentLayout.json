@@ -34,8 +34,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -58,7 +62,8 @@
               "RelativeToolTip": "WinFormsApp1\\FormAlumnos.cs",
               "ViewState": "AgIAAGoDAAAAAAAAAAAcwI4DAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-21T22:31:36.753Z"
+              "WhenOpened": "2026-10-21T22:31:36.753Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -68,7 +73,7 @@
               "RelativeDocumentMoniker": "AccesoDatos\\Repositories\\InscripcionRepository.cs",
               "ToolTip": "C:\\Users\\Marti\\OneDrive\\Documentos\\TP-PROGRA\\TP_administracion_de_alumnos_y_cursos_Grupo1\\AccesoDatos\\Repositories\\InscripcionRepository.cs",
               "RelativeToolTip": "AccesoDatos\\Repositories\\InscripcionRepository.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwA4AAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T20:01:43.262Z",
               "EditorCaption": ""
@@ -96,10 +101,6 @@
               "ViewState": "AgIAAA8AAAAAAAAAAAAowDYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-20T20:00:07.275Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             },
             {
               "$type": "Document",
